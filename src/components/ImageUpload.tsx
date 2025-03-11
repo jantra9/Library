@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 
-const ImageUpload = () => {
+interface Props{
+  onImageSelect:(file:File|null)=>void;
+}
+
+const ImageUpload = ({onImageSelect}:Props) => {
         const [image, setImage] = useState<string | null>(null);
         const [imageName, setImageName] = useState<string | null>(null);
         const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -9,6 +13,7 @@ const ImageUpload = () => {
             const imageUrl = URL.createObjectURL(file); // Generate a preview URL
             setImage(imageUrl);
             setImageName(file.name);
+            onImageSelect(file)
           }
         };
   return (

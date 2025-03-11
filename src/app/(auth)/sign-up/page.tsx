@@ -2,6 +2,7 @@
 import React from 'react'
 import { signUpSchema } from '@/lib/validation'
 import AuthForm from '@/components/AuthForm'
+import { signUp } from '@/lib/action/auth'
 
 //Define labels
 const Page = () => {
@@ -13,11 +14,11 @@ const Page = () => {
       email:"",
       password:"",
       fullName:"",
-      universityId:"",
-      universityCard:""
+      universityCard:"",
+      universityId:0,
 
     }}
-    onSubmit={()=>{}}
+    onSubmit={signUp}
     />
   )
 }

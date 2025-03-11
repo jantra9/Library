@@ -1,9 +1,12 @@
 import BookList from "@/components/BookList";
 import BookOverview from "@/components/BookOverview";
 import { sampleBooks } from "@/constants";
-import { FcAbout } from "react-icons/fc";
+import { db } from "@/database/drizzle";
+import { users } from "@/database/schema";
 
-export default function Home() {
+const Home = async() => {
+  const result= await db.select().from(users);
+  
   return (
   <>
     <BookOverview {...sampleBooks[0]}/>
@@ -12,6 +15,8 @@ export default function Home() {
       books={sampleBooks}
       containerClassName="mt-28"
     />
+    <h1 className="text-white">{JSON.stringify(result)}</h1>
   </>
   );
 }
+export default Home;
